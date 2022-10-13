@@ -1441,7 +1441,7 @@ bool SingletonGlobalVars::LockFromExecuting(ModuleAddresses* modules, bool& isAd
 //-------------------------------------------------------------//
 void SingletonGlobalVars::NewRound(AddressesList& addressesList, bool& newRound)
 {
-	int newMatch = *(int*)(addressesList.inMatch);
+	int newMatch = *(int*)(addressesList.inMatch);//
 	if (!(newRound) && newMatch)
 	{
 		newRound = true;
@@ -1451,8 +1451,9 @@ void SingletonGlobalVars::NewRound(AddressesList& addressesList, bool& newRound)
 }
 
 //-------------------------------------------------------------//
-void SingletonGlobalVars::FindMaxId(const int maxPlayers, AddressesList& addressesList, int maxId)
+unsigned int SingletonGlobalVars::FindMaxId(const int maxPlayers, AddressesList& addressesList)
 {
+	unsigned int maxId = 0;
 	for (int i = 0; i < maxPlayers; i++)
 	{
 		int bufferId = *(int*)(addressesList.entBase + i * addressesList.playerOffset);
@@ -1480,7 +1481,7 @@ void SingletonGlobalVars::FillPlayerData(const int& maxPlayers, AddressesList& a
 
 	//names attacker
 	if (ents.size())
-		for (std::shared_ptr<Ent>& player : ents)
+		for (auto& player : ents)
 		{
 			//fill names
 			if (allPlayerNames.size())

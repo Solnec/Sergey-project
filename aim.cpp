@@ -13,14 +13,15 @@
 #include "ent.h"
 #include "aim.h"
 #include "memory.h"
+#include <numbers>
 
 constexpr float kModelHeight = 64.118f;
 constexpr float kHeadAdjustment = 1.9f;
 constexpr float kCrouchAdjustment = 3.0f;
 constexpr float kOnGround = 2.0f;
 constexpr float kCrouchHeightAdjustment = -35.0f;
-constexpr float kDegreesToRad = PI / 180.0f;
-constexpr float kRadToDegrees = 180.0f/ PI;
+constexpr float kDegreesToRad = std::numbers::pi_v<float> / 180.0f;
+constexpr float kRadToDegrees = 180.0f/ std::numbers::pi_v<float>;
 
 constexpr float kDefaultDistAdjustment = 920.0;
 constexpr float kDistanceMultiplier = 900.0f;
@@ -35,17 +36,16 @@ int iterator = 0;
 
 bool Aim::IsOnGround(int stance) const 
 {
-	bool isFallen = false;
 	if (stance < 50
 		|| stance == 1234
 		|| stance == 1257
 		|| stance == 1256
 		|| stance == 1258)
 	{
-		isFallen = true;
+		return true;
 	}
 
-	return isFallen;
+	return false;
 }
 
 //-------------------------------------------------------------//
@@ -322,12 +322,12 @@ float Aim::AngleBetweenEnemyX(float X, float Y) const
 	if (((X < 0) && (Y > 0)) || ((X < 0) && (Y < 0)))
 	{
 		angle = atan(Y / X);
-		angle += (float)PI;
+		angle += std::numbers::pi_v<float>;
 	}
 	else if ((X > 0) && (Y < 0))
-		angle = (float)(2 * PI + atan(Y / X));
+		angle = 2 * std::numbers::pi_v<float> + atan(Y / X);
 	else
-		angle = (float)atan(Y / X);
+		angle = atan(Y / X);
 
 	float finalAngle = (float)((kRadToDegrees) * angle);
 	return finalAngle;
@@ -608,7 +608,7 @@ std::shared_ptr<Ent> Aim::FindClosestToCrosshair(std::vector<std::shared_ptr<Ent
 }
 
 //-------------------------------------------------------------//
-void Aim::Pblocks(std::shared_ptr<Ent> &enemy)
+void Aim::Pblocks(std::shared_ptr<Ent> &enemy)//
 {
 	Weapons weapons;
 	const float pbPitch = 25;
@@ -721,7 +721,7 @@ void Aim::Pblocks(std::shared_ptr<Ent> &enemy)
 }
 
 //-------------------------------------------------------------//
-std::shared_ptr<Ent> Aim::ChooseTarget(std::shared_ptr<Ent> &chosenTarget, const bool &isTk, bool &isAim)
+std::shared_ptr<Ent> Aim::ChooseTarget(std::shared_ptr<Ent> &chosenTarget, const bool isTk, bool &isAim)
 {
 	std::vector<std::shared_ptr<Ent>> bufferEnts;
 	std::vector<std::shared_ptr<Ent>> bufferEntsVis;

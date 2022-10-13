@@ -162,7 +162,7 @@ public:
 
 ///////////////////////////////////////////////////////////////
 // class Ent - entity (player)
-class Ent
+class Ent//Entity
 {
 public:
     int color1;
@@ -170,7 +170,7 @@ public:
     int id;
     int surface;
     int saberAnim;
-    int numWeapon;
+    unsigned int numWeapon;
     int stance;
     int stance2;
     int hp;
@@ -204,8 +204,10 @@ public:
     bool correctColor3;
     bool correctColor4;
 
-    const char* className;
+    //name.c_str()
+
     std::string name;
+    
     std::string shortName;
 
     Info2d info2d;
