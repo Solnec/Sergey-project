@@ -1,8 +1,4 @@
 #pragma once
-#include <cmath>
-
-constexpr float PI = 3.14159265358979323846;
-
 typedef float vec3_t[3];
 typedef float vec2_t[2];
 
@@ -17,10 +13,10 @@ void VecAdd(vec3_t in, vec3_t added);
 void VecSub(vec3_t in, vec3_t added);
 
 //VectorSubstract - substract vectors end result into vecOut
-void VectorSubtract(const vec3_t vec1, const vec3_t vec2, vec3_t vecOut);
+void VectorSubtract(const vec3_t& vec1, const vec3_t& vec2, vec3_t& vecOut);
 
 //VecDivByNum divide vector by number
-void VecDivByNum(vec3_t in, float numDiv);
+void VecDivByNum(vec3_t& in, float numDiv);
 
 //VecNull - make a vector 0,0,0
 void VecNull(vec3_t in);

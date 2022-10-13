@@ -92,7 +92,7 @@ public:
 
 
 	//choose target
-	std::shared_ptr<Ent> ChooseTarget(std::shared_ptr<Ent> &chosenTarget, const bool &isTk, bool& isAim);
+	std::shared_ptr<Ent> ChooseTarget(std::shared_ptr<Ent> &chosenTarget, const bool isTk, bool& isAim);
 
 
 	//lock on
